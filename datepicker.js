@@ -70,6 +70,24 @@ mod.directive('datepicker', function() {
                 }
 
                 inputField.on('input paste blur propertyChange', onChange);
+
+                scope.$watch(function() {
+                    return scope.minimum();
+                }, function(newVal, oldVal) {
+                    if(newVal != oldVal) {
+                        picker.data("DateTimePicker").minDate(scope.minimum());
+                        ngModelCtrl.$validate();
+                    }
+                });
+
+                scope.$watch(function() {
+                    return scope.maximum();
+                }, function(newVal, oldVal) {
+                    if(newVal != oldVal) {
+                        picker.data("DateTimePicker").maxDate(scope.minimum());
+                        ngModelCtrl.$validate();
+                    }
+                });
             });
         }
     };
