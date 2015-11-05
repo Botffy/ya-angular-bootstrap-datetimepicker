@@ -11,9 +11,12 @@ mod.directive('datepicker', function() {
 
     return {
         restrict: 'E',
-        scope: {},
+        scope: {
+            minimum: "&?minimum",
+            maximum: "&?maximum"
+        },
         template: template,
-        require: '?ngModel',
+        require: 'ngModel',
         link: function(scope, iElement, iAttrs, ngModelCtrl) {
             scope.format = iAttrs.format || "YYYY-MM-DD";
 
@@ -26,8 +29,15 @@ mod.directive('datepicker', function() {
             });
 
             ngModelCtrl.$validators.validDate = function(val) {
-                console.log(val);
                 return val.isValid();
+            };
+
+            ngModelCtrl.$validators.laterThanStart = function(val) {
+                return !scope.minimum() || val.isAfter(scope.minimum()) || val.isSame(scope.minimum());
+            };
+
+            ngModelCtrl.$validators.earlierThanEnd = function(val) {
+                return !scope.maximum() || val.isBefore(scope.maximum()) || val.isSame(scope.maximum());
             };
 
 
@@ -48,8 +58,16 @@ mod.directive('datepicker', function() {
                 var picker = iElement.children(":first").datetimepicker({
                     format: scope.format,
                     useStrict: true,
-                    keepInvalid: true,
+                    keepInvalid: true
                 });
+
+                if(scope.minimum()) {
+                    picker.data("DateTimePicker").minDate(scope.minimum());
+                }
+
+                if(scope.maximum()) {
+                    picker.data("DateTimePicker").maxDate(scope.maximum());
+                }
 
                 inputField.on('input paste blur propertyChange', onChange);
             });

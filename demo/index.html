@@ -7,16 +7,45 @@
 </head>
 <body ng-app="demo">
     <div ng-controller="DemoController" class='row' style='margin-top: 50px'>
-            {{model.datum}}
         <form name="dem">
-
-
             <div class='col-md-4 col-md-offset-2'>
                 <div class='form-group'>
                     <!-- ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 1000, 'blur': 0 } }" -->
-                    <datepicker name='someDate' ng-model='model.datum'></datepicker>
+                    <datepicker name='someDate' ng-model='model.datum' minimum='model.minDate' maximum='model.maxDate'></datepicker>
                  </div>
-                 <div ng-if="dem.someDate.$error.validDate">plöm</div>
+                 <div ng-if="dem.someDate.$error.validDate">That's invalid</div>
+                 <div ng-if="dem.someDate.$error.laterThanStart">that's before the start date</div>
+                 <div ng-if="dem.someDate.$error.earlierThanEnd">that's after the end date</div>
+            </div>
+
+            <div class='col-md-4'>
+                {{model.datum}}
+            </div>
+        </form>
+    </div>
+
+    <div ng-controller="RangeController" class='row' style='margin-top: 50px'>
+        <form name="dem">
+            <div class='col-md-4 col-md-offset-2'>
+                <div class='form-group'>
+                    <datepicker name='oneDate' ng-model='model.startDate' minimum='model.minDate' maximum='model.endDate'></datepicker>
+                 </div>
+                 <div ng-if="dem.oneDate.$error.validDate">That's invalid</div>
+                 <div ng-if="dem.oneDate.$error.laterThanStart">that's before the start date</div>
+                 <div ng-if="dem.oneDate.$error.earlierThanEnd">that's after the end date</div>
+            </div>
+
+            <div class='col-md-4'>
+                <div class='form-group'>
+                    <datepicker name='otherDate' ng-model='model.endDate' minimum='model.startDate' maximum='model.maxDate'></datepicker>
+                 </div>
+                 <div ng-if="dem.otherDate.$error.validDate">That's invalid</div>
+                 <div ng-if="dem.otherDate.$error.laterThanStart">that's before the start date</div>
+                 <div ng-if="dem.otherDate.$error.earlierThanEnd">that's after the end date</div>
+            </div>
+
+            <div class='col-md-2'>
+                {{model.datum}}
             </div>
         </form>
     </div>
@@ -35,7 +64,18 @@
 
         demo.controller('DemoController', function($scope) {
             $scope.model = {
-                datum: moment()
+                datum: moment(),
+                minDate: moment().subtract(1, 'years'),
+                maxDate: moment().add(1, 'years')
+            };
+        });
+
+        demo.controller('RangeController', function($scope) {
+            $scope.model = {
+                startDate: moment(),
+                endDate: moment(),
+                minDate: moment().subtract(20, 'years'),
+                maxDate: moment().add(20, 'years')
             };
         });
 
