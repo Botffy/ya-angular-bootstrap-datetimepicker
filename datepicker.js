@@ -86,7 +86,7 @@ mod.directive('datepicker', function() {
                     return scope.maximum();
                 }, function(newVal, oldVal) {
                     if(newVal != oldVal) {
-                        picker.data("DateTimePicker").maxDate(scope.minimum());
+                        picker.data("DateTimePicker").maxDate(scope.maximum());
                         ngModelCtrl.$validate();
                     }
                 });
