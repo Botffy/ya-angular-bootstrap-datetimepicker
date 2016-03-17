@@ -2,9 +2,7 @@
 /* global jQuery */
 /* global moment */
 
-var mod = angular.module('datepicker', []);
-
-mod.directive('datepicker', function() {
+angular.module('datepicker', []).directive('egroupDatepicker', function() {
     'use strict';
 
     var template = "<div class='input-group date'><input type='text' class='form-control'><span class='input-group-addon add-on'><i data-time-icon='fa fa-clock-o' data-date-icon='fa fa-calendar' class='fa fa-calendar'></i></span></div>";
