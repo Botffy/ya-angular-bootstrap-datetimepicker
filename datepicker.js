@@ -61,6 +61,8 @@ mod.directive('datepicker', function() {
                     keepInvalid: true
                 });
 
+                picker.data("DateTimePicker").keyBinds({});
+
                 if(scope.minimum()) {
                     picker.data("DateTimePicker").minDate(scope.minimum());
                 }
