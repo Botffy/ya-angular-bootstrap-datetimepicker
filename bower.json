@@ -1,5 +1,5 @@
 {
-    "name": "egroup-angular-bootstrap-datetimepicker",
+    "name": "ya-angular-bootstrap-datetimepicker",
     "description": "A form-aware angular directive for Eonasdan/bootstrap-datetimepicker",
     "private": false,
     "dependencies": {

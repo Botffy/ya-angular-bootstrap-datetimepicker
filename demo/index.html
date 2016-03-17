@@ -11,7 +11,7 @@
             <div class='col-md-4 col-md-offset-2'>
                 <div class='form-group'>
                     <!-- ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 1000, 'blur': 0 } }" -->
-                    <egroup-datepicker name='someDate' ng-model='model.datum' minimum='model.minDate' maximum='model.maxDate'></egroup-datepicker>
+                    <ya-datepicker name='someDate' ng-model='model.datum' minimum='model.minDate' maximum='model.maxDate'></ya-datepicker>
                  </div>
                  <div ng-if="dem.someDate.$error.validDate">That's invalid</div>
                  <div ng-if="dem.someDate.$error.laterThanStart">that's before the start date</div>
@@ -28,7 +28,7 @@
         <form name="dem">
             <div class='col-md-4 col-md-offset-2'>
                 <div class='form-group'>
-                    <egroup-datepicker name='oneDate' ng-model='model.startDate' minimum='model.minDate' maximum='model.endDate'></egroup-datepicker>
+                    <ya-datepicker name='oneDate' ng-model='model.startDate' minimum='model.minDate' maximum='model.endDate'></ya-datepicker>
                  </div>
                  <div ng-if="dem.oneDate.$error.validDate">That's invalid</div>
                  <div ng-if="dem.oneDate.$error.laterThanStart">that's before the start date</div>
@@ -37,7 +37,7 @@
 
             <div class='col-md-4'>
                 <div class='form-group'>
-                    <egroup-datepicker name='otherDate' ng-model='model.endDate' minimum='model.startDate' maximum='model.maxDate'></egroup-datepicker>
+                    <ya-datepicker name='otherDate' ng-model='model.endDate' minimum='model.startDate' maximum='model.maxDate'></ya-datepicker>
                  </div>
                  <div ng-if="dem.otherDate.$error.validDate">That's invalid</div>
                  <div ng-if="dem.otherDate.$error.laterThanStart">that's before the start date</div>
@@ -56,7 +56,7 @@
     <script src="../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
     <script src="../bower_components/angular/angular.js"></script>
-    <script src="../datepicker.js"></script>
+    <script src="../yaDatepicker.js"></script>
     <script>
 
 
