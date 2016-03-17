@@ -1,11 +1,22 @@
 {
     "name": "egroup-angular-bootstrap-datetimepicker",
     "description": "A form-aware angular directive for Eonasdan/bootstrap-datetimepicker",
-    "version": "0.0.1",
+    "private": false,
     "dependencies": {
-    	"angular": ">=1.4.6",
+        "angular": ">=1.4.6",
         "jquery": "latest",
         "moment": ">=2.9.0",
         "eonasdan-bootstrap-datetimepicker": "latest"
-    }
+    },
+    "main": [ "datepicker.js" ],
+    "ignore": [
+        "demo",
+        ".editorconfig",
+        ".gitignore"
+    ],
+    "keywords": [
+        "datepicker",
+        "angular"
+        "datetimepicker"
+    ]
 }
