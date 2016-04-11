@@ -5,13 +5,14 @@
 angular.module('datepicker', []).directive('yaDatepicker', function() {
     'use strict';
 
-    var template = "<div class='input-group date'><input type='text' class='form-control'><span class='input-group-addon add-on'><i data-time-icon='fa fa-clock-o' data-date-icon='fa fa-calendar' class='fa fa-calendar'></i></span></div>";
+    var template = "<div class='input-group date'><input type='text' ng-disabled='disabled' class='form-control'><span class='input-group-addon add-on'><i data-time-icon='fa fa-clock-o' data-date-icon='fa fa-calendar' class='fa fa-calendar'></i></span></div>";
 
     return {
         restrict: 'E',
         scope: {
             minimum: "&?minimum",
-            maximum: "&?maximum"
+            maximum: "&?maximum",
+            disabled: "=ngDisabled"
         },
         template: template,
         require: 'ngModel',
