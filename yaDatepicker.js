@@ -32,11 +32,11 @@ angular.module('datepicker', []).directive('yaDatepicker', function() {
             };
 
             ngModelCtrl.$validators.laterThanStart = function(val) {
-                return !scope.minimum() || val.isAfter(scope.minimum()) || val.isSame(scope.minimum());
+                return !scope.minimum || val.isAfter(scope.minimum()) || val.isSame(scope.minimum());
             };
 
             ngModelCtrl.$validators.earlierThanEnd = function(val) {
-                return !scope.maximum() || val.isBefore(scope.maximum()) || val.isSame(scope.maximum());
+                return !scope.maximum || val.isBefore(scope.maximum()) || val.isSame(scope.maximum());
             };
 
 
@@ -62,33 +62,37 @@ angular.module('datepicker', []).directive('yaDatepicker', function() {
 
                 picker.data("DateTimePicker").keyBinds({});
 
-                if(scope.minimum()) {
+                if(scope.minimum) {
                     picker.data("DateTimePicker").minDate(scope.minimum());
                 }
 
-                if(scope.maximum()) {
+                if(scope.maximum) {
                     picker.data("DateTimePicker").maxDate(scope.maximum());
                 }
 
                 inputField.on('input paste blur propertyChange', onChange);
 
-                scope.$watch(function() {
-                    return scope.minimum();
-                }, function(newVal, oldVal) {
-                    if(newVal != oldVal) {
-                        picker.data("DateTimePicker").minDate(scope.minimum());
-                        ngModelCtrl.$validate();
-                    }
-                });
+                if(scope.minimum) {
+                     scope.$watch(function() {
+                        return scope.minimum();
+                    }, function(newVal, oldVal) {
+                        if(newVal != oldVal) {
+                            picker.data("DateTimePicker").minDate(scope.minimum());
+                            ngModelCtrl.$validate();
+                        }
+                    });   
+                }
 
-                scope.$watch(function() {
-                    return scope.maximum();
-                }, function(newVal, oldVal) {
-                    if(newVal != oldVal) {
-                        picker.data("DateTimePicker").maxDate(scope.maximum());
-                        ngModelCtrl.$validate();
-                    }
-                });
+                if(scope.maximum) {
+                    scope.$watch(function() {
+                        return scope.maximum();
+                    }, function(newVal, oldVal) {
+                        if(newVal != oldVal) {
+                            picker.data("DateTimePicker").maxDate(scope.maximum());
+                            ngModelCtrl.$validate();
+                        }
+                    });   
+                }
             });
         }
     };
